@@ -1,0 +1,1 @@
+# Desafio-T-cnico---Desenvolvedor-a-Full-Stack-Next.js---Pipelore
