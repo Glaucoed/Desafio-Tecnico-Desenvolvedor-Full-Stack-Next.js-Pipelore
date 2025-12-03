@@ -7,3 +7,30 @@ datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
 }
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+  URGENT
+}
+
+enum Status {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+model OrderRepair {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String
+  location    String
+  priority    Priority
+  status      Status    @default(OPEN)
+  dueDate     DateTime?
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
