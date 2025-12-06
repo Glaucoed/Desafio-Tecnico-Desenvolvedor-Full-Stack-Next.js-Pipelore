@@ -1,5 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import QueryProvider from "@/services/QueryProvider";
+import Nav from "@/componenets/Nav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -11,7 +13,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,9 +21,12 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#DBF227] h-screen`}
       >
-        {children}
+        <QueryProvider>
+          <Nav />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );
