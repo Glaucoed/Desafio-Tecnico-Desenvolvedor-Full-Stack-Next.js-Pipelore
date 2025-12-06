@@ -1,10 +1,13 @@
-import prisma from '@/lib/prisma';
+import prisma from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const orders = await prisma.orderRepair.findMany({
-    orderBy: { createdAt: "desc" },
-  });
-  return NextResponse.json(orders);
+  try {
+    const orders = await prisma.orderRepair.findMany({
+      orderBy: { createdAt: "desc" },
+    });
+    return NextResponse.json(orders);
+  } catch (error) {
+    return NextResponse.json({ error: error }, { status: 500 });
+  }
 }
-  
