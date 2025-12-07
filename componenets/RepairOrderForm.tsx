@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
+import { create } from "@/app/actions";
+import { CreateRepairOrderInput } from "@/types/orders";
 
 const schema = z.object({
   title: z.string().min(1, "Title is required").max(255),
@@ -30,7 +32,11 @@ export function RepairOrderForm() {
   });
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    const payload: CreateRepairOrderInput = {
+      ...data,
+      dueDate: new Date(data.dueDate),
+    };
+    create(payload);
   };
 
   return (

@@ -13,3 +13,5 @@ export interface RepairOrder {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export type CreateRepairOrderInput = Omit<RepairOrder, 'id' | 'createdAt' | 'updatedAt' | 'completedAt'>;
