@@ -15,3 +15,4 @@ export interface RepairOrder {
 }
 
 export type CreateRepairOrderInput = Omit<RepairOrder, 'id' | 'createdAt' | 'updatedAt' | 'completedAt'>;
+export type UpdateRepairOrderInput = Partial<CreateRepairOrderInput> & { dueDate?: Date; atus?: Status; completedAt?: Date };

@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useRouter } from "next/navigation";
-import { create } from "@/app/actions";
-import { CreateRepairOrderInput } from "@/types/orders";
+import { create, update } from "@/app/actions";
+import { CreateRepairOrderInput, UpdateRepairOrderInput } from "@/types/orders";
 
 const schema = z.object({
   title: z.string().min(1, "Title is required").max(255),
@@ -20,7 +20,13 @@ const schema = z.object({
 
 type FormData = z.infer<typeof schema>;
 
-export function RepairOrderForm() {
+export function RepairOrderForm({
+  initialData,
+  id,
+}: {
+  initialData?: UpdateRepairOrderInput | null;
+  id?: string;
+}) {
   const router = useRouter();
 
   const {
@@ -29,14 +35,24 @@ export function RepairOrderForm() {
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      title: initialData?.title || "",
+      description: initialData?.description || "",
+      location: initialData?.location || "",
+      priority: initialData?.priority || "MEDIUM",
+      status: initialData?.status || "OPEN",
+      dueDate: initialData?.dueDate
+        ? new Date(initialData.dueDate).toISOString().split("T")[0]
+        : "",
+    },
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     const payload: CreateRepairOrderInput = {
       ...data,
       dueDate: new Date(data.dueDate),
     };
-    create(payload);
+    await (initialData && id ? update(id, payload) : create(payload));
   };
 
   return (
@@ -45,7 +61,7 @@ export function RepairOrderForm() {
       className="space-y-6 max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md"
     >
       <h2 className="text-2xl font-bold mb-6 text-gray-800">
-        New Repair Order
+        {initialData ? "Edit Repair Order" : "New Repair Order"}
       </h2>
 
       <div className="space-y-2">

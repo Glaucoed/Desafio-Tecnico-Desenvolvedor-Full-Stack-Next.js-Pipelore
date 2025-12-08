@@ -3,6 +3,8 @@
 import { RepairOrder } from "@/types/orders";
 import { useQuery } from "@tanstack/react-query";
 import Loading from "./Loading";
+import Link from "next/link";
+import { TbHomeEdit } from "react-icons/tb";
 
 export function RepairOrderList() {
   const {
@@ -38,7 +40,16 @@ export function RepairOrderList() {
                 >
                   {order.title}
                 </h3>
-                <div className="flex space-x-2"></div>
+                <div className="flex space-x-2">
+                  <div className="flex space-x-2">
+                    <Link
+                      href={`/orders/${order.id}/edit`}
+                      className="p-1 text-gray-500 hover:text-blue-600 transition-colors"
+                    >
+                      <TbHomeEdit className="w-4 h-4" />
+                    </Link>
+                  </div>
+                </div>
               </div>
 
               <p className="text-white mb-4 line-clamp-2 grow">
