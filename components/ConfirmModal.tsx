@@ -21,13 +21,13 @@ export default function ConfirmModal({
         <div className="mt-6 flex gap-4 justify-center">
           <button
             onClick={onConfirm}
-            className="px-5 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold transition"
+            className="px-5 py-2 rounded-lg bg-green-600 hover:bg-green-700 text-white font-semibold transition cursor-pointer"
           >
             Sim
           </button>
           <button
             onClick={onClose}
-            className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold transition"
+            className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-semibold transition cursor-pointer"
           >
             Não
           </button>

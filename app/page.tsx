@@ -1,4 +1,4 @@
-import { RepairOrderList } from "@/componenets/RepairOrderList";
+import { RepairOrderList } from "@/components/RepairOrderList";
 import Link from "next/link";
 
 export default function Home() {

@@ -1,4 +1,4 @@
-import { RepairOrderForm } from "@/componenets/RepairOrderForm";
+import { RepairOrderForm } from "@/components/RepairOrderForm";
 import { getById } from "@/app/actions";
 
 interface EditOrderPageProps {
