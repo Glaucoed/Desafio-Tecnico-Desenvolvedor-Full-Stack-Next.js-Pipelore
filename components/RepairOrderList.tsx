@@ -28,7 +28,7 @@ export function RepairOrderList() {
   } = useQuery({
     queryKey: ["orders"],
     queryFn: async () => {
-      const res = await fetch("/api/repair-orders/late", { cache: "no-store" });
+      const res = await fetch("/api/repair-orders", { cache: "no-store" });
       return res.json();
     },
   });
